@@ -13,7 +13,7 @@ const app = express();
 const __dirname = path.resolve();
 
 app.use(express.json());
-// app.use(clerkMiddleware());
+app.use(clerkMiddleware());
 app.use(
   cors({
     credentials: true,

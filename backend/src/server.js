@@ -23,7 +23,7 @@ app.use(
 
 app.use(
   "/api/inngest",
-  serve({ client: inngest, functions, signingKey: ENV.INGEST_SIGNING_KEY }),
+  serve({ client: inngest, functions, signingKey: ENV.INNGEST_SIGNING_KEY }),
 );
 
 if (ENV.NODE_ENV === "production") {

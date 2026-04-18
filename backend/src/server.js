@@ -10,7 +10,7 @@ import { inngest, functions } from "./lib/inngest.js";
 
 const app = express();
 
-const _dirname = path.resolve();
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(clerkMiddleware()); 
@@ -22,9 +22,9 @@ app.use(cors({
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 if(ENV.NODE_ENV === "production"){
-    app.use(express.static(path.join(_dirname, "../frontend/dist")));
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
     app.get("/{*any}", (req,res)=>{
-        res.sendFile(path.join(_dirname,"../frontend","dist","index.html"));
+        res.sendFile(path.join(__dirname,"../frontend","dist","index.html"));
     });
 }
 

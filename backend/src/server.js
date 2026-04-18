@@ -1,12 +1,12 @@
 import express from "express";
 import path from "path";
 import cors from "cors";
-import { serve, functions } from "inngest/express";
+import { serve } from "inngest/express";
 import { clerkMiddleware } from "@clerk/express";
 
 import {ENV} from "./lib/env.js";
 import { connectDB } from "./lib/db.js";
-import { inngest } from "./lib/inngest.js";
+import { inngest, functions } from "./lib/inngest.js";
 
 const app = express();
 

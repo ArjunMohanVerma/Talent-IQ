@@ -5,7 +5,7 @@ import User from "../models/User.js";
 import { deleteStreamUser, upsertStreamUser } from "./stream.js";
 
 export const inngest = new Inngest({ id: "talent-iq",
-  eventKey: ENV.INNGEST_EVENT_KEY,
+  eventKey: ENV.INGEST_EVENT_KEY,
 });
 
 const syncUser = inngest.createFunction(

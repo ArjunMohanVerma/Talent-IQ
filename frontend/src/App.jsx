@@ -1,8 +1,9 @@
 import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
+import {Route, Routes } from 'react-router'
 
 function App() {
   return (
-    <>
+    <Routes>
       <header>
         <Show when="signed-out">
           <SignInButton mode="modal" />
@@ -12,7 +13,7 @@ function App() {
           <UserButton />
         </Show>
       </header>
-    </>
+    </Routes>
   )
 }
 

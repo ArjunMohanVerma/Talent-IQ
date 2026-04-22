@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { useEndSession, useJoinSession, useSessionById } from "../hooks/useSessions";
 import { PROBLEMS } from "../data/problems";
 import { executeCode } from "../lib/piston";
+import { disconnectStreamClient } from "../lib/stream";
 import Navbar from "../components/Navbar";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { getDifficultyBadgeClass } from "../lib/utils";
@@ -88,10 +89,20 @@ function SessionPage() {
     setIsRunning(false);
   };
 
-  const handleEndSession = () => {
+  const handleEndSession = async () => {
     if (confirm("Are you sure you want to end this session? All participants will be notified.")) {
       // this will navigate the HOST to dashboard
-      endSessionMutation.mutate(id, { onSuccess: () => navigate("/dashboard") });
+      // endSessionMutation.mutate(id, { onSuccess: () => navigate("/dashboard") });
+      try {
+      if (call) await call.leave();              // ✅ ADD
+      await disconnectStreamClient();            // ✅ ADD
+
+      endSessionMutation.mutate(id, {
+        onSuccess: () => navigate("/dashboard"),
+      });
+    } catch (err) {
+      console.error("Error ending session:", err);
+    }
     }
   };
 

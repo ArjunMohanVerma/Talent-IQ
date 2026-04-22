@@ -78,7 +78,7 @@ function ProblemPage() {
     const normalizedActual = normalizeOutput(actualOutput);
     const normalizedExpected = normalizeOutput(expectedOutput);
 
-    return normalizedActual == normalizedExpected;
+    return normalizedActual === normalizedExpected;
   };
 
   const handleRunCode = async () => {
@@ -86,7 +86,12 @@ function ProblemPage() {
     setOutput(null);
 
     const result = await executeCode(selectedLanguage, code);
-    setOutput(result);
+    const formattedOutput = {
+    success: result.success,
+    output: result.output || "",
+    error: result.error || "",
+  };
+    setOutput(formattedOutput);
     setIsRunning(false);
 
     // check if code executed successfully and matches expected output

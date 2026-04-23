@@ -21,7 +21,10 @@ app.use(clerkMiddleware());
 app.use(
   cors({
     credentials: true,
-    origin: ENV.CLIENT_URL,
+    origin:[ ENV.CLIENT_URL,
+      "https://talent-iq-1-exy7.onrender.com",
+    ]
+
   }),
 );
 
